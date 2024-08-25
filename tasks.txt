@@ -1,0 +1,6 @@
+1.db 
+2.env config 
+3 mvc, 
+4.oop,  ժառանգականություն, ինկապսուլացիա, պոլիմորֆիզմ, ապստրակցիա, ինտերֆեյս
+5 singleton design pattern
+6,create cv
