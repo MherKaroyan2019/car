@@ -3,9 +3,9 @@
 
     include "db.php";
 
-    $productModel = new ProductModel;
+    $ProductController = new ProductController;
 
-    $result = $productModel->get(["userid" => $_SESSION["id"]]);
+    $result = $ProductController->get(["userid" => $_SESSION["id"]]);
 ?>
 
 <?php include 'header.php' ?>

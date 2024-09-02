@@ -5,8 +5,8 @@
 
     if(isset($_POST['login'])){
         if($_POST['email'] != "" && $_POST['password'] != ""){
-            $userModel = new UserModel;
-            $result = $userModel->get($_POST);
+            $UserController = new UserController;
+            $result = $UserController->get($_POST);
             if(mysqli_num_rows($result) == 0){
                 $err = 'Անվավեր մուտքանուն կամ գաղտնաբառ:';
             } else {

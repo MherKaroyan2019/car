@@ -1,16 +1,16 @@
 <?php 
     include "db.php";
 
-    $productModel = new ProductModel;
-    $userModel = new UserModel;
+    $ProductController = new ProductController;
+    $UserController = new UserController;
 
-    $result = $productModel->get(["id" => $_GET["id"]]);
+    $result = $ProductController->get(["id" => $_GET["id"]]);
     $r = mysqli_fetch_assoc($result);
 
-    $result1 = $userModel->get(["id" => $r["userid"]]);
+    $result1 = $UserController->get(["id" => $r["userid"]]);
     $r1 = mysqli_fetch_assoc($result1);
 
-    $result2 = $productModel->get(["brand" => $r["brand"], "model" => $r["model"], "bodytype" => $r["bodytype"], "engine" => $r["engine"], "gearbox" => $r["gearbox"], "towtruck" => $r["towtruck"], "condition" => $r["condition"], "wheel" => $r["wheel"], "customclear" => $r["customclear"], "luke" => $r["luke"]], 6)
+    $result2 = $ProductController->get(["brand" => $r["brand"], "model" => $r["model"], "bodytype" => $r["bodytype"], "engine" => $r["engine"], "gearbox" => $r["gearbox"], "towtruck" => $r["towtruck"], "condition" => $r["condition"], "wheel" => $r["wheel"], "customclear" => $r["customclear"], "luke" => $r["luke"]], 6)
 ?>
 
 

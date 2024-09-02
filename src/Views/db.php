@@ -1,11 +1,7 @@
 <?php
-    require_once (__DIR__ . '\..\..\config.php');
-    global $DB_HOST;
-    global $DB_USERNAME;
-    global $DB_PASSWORD;
-    global $DB_DATABASE;
+    $config = json_decode(file_get_contents(__DIR__ . "\..\..\config.json"), true);
     
-    $db = mysqli_connect($DB_HOST,$DB_USERNAME,$DB_PASSWORD,$DB_DATABASE);
+    $db = mysqli_connect($config["DB_HOST"],$config["DB_USERNAME"],$config["DB_PASSWORD"],$config["DB_DATABASE"]);
     if (!$db) {
         die("connection failed".mysqli_connect_error($db));
     }

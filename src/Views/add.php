@@ -8,7 +8,7 @@
             if($_FILES["img"]["type"][0] != "image/jpeg" && $_FILES["img"]["type"][0] != "image/jpg"){
                 $err = "Insert jpeg or jpg image";
             }else{
-                $productModel = new ProductModel;
+                $ProductController = new ProductController;
                 $_POST += ["userid" => $_SESSION["id"]];
                 $name = $_FILES["img"]["name"];
                 $tmpname = $_FILES["img"]["tmp_name"];
@@ -29,7 +29,7 @@
                     }
                 }
                 $_POST += ["imgNames" => join(",",$imges)];
-                $productModel->add($_POST);
+                $ProductController->add($_POST);
                 header("Location: ../public/yourpage.php");
             }
         } else {

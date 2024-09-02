@@ -3,12 +3,12 @@
     
     if(isset($_POST['register'])){
         if($_POST['name'] != "" && $_POST['email'] != "" && $_POST['password'] != ""){
-            $userModel = new UserModel;
-            $result = $userModel->get(["email" => $_POST['email']]);
+            $UserController = new UserController;
+            $result = $UserController->get(["email" => $_POST['email']]);
             if(mysqli_num_rows($result) == 0){
                 $values = $_POST;
                 $values["date"] = date('d/m/Y');
-                $userModel->add($values);
+                $UserController->add($values);
                 header("Location: login.php");
             }else{
                 $err = "Այս էլեկտրոնային հասցեով կա արդեն գրանցված հաշիվ";
