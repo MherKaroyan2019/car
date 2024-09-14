@@ -1,7 +1,7 @@
 
 <?php 
     session_start();
-    
+
     if(isset($_POST['add'])){
         $err = "";
         if(count(array_filter($_POST)) == count($_POST) || isset($_FILES["tmp_name"])) {
@@ -12,6 +12,9 @@
                 $_POST += ["userid" => $_SESSION["id"]];
                 $name = $_FILES["img"]["name"];
                 $tmpname = $_FILES["img"]["tmp_name"];
+                print_r($name);
+                echo "<BR>";
+                print_r($tmpname);
                 $imges = [];
                 for($i = 0; $i < count($name); $i++){
                     $imgname = explode(".", $name[$i])[0];
@@ -26,15 +29,28 @@
                             }
                             $j++;
                         }   
+                    }else{
+                        move_uploaded_file($tmpname[$i], "../assets/addimages/$imgname.jpg");
                     }
                 }
                 $_POST += ["imgNames" => join(",",$imges)];
-                $ProductController->add($_POST);
+                if(isset($_GET["action"])){
+                    $ProductController->update($_POST, $_GET["id"]);
+                }else if(!isset($_GET["action"])){
+                    $ProductController->add($_POST);
+                }
                 header("Location: ../public/yourpage.php");
             }
         } else {
             $err = "Insert all values";
         }
+    }
+
+    if(isset($_GET["action"]) && $_GET["action"] == "update"){
+        $ProductController = new ProductController;
+        $result = $ProductController->get(["id"=>$_GET["id"]]);
+        $r = mysqli_fetch_assoc($result);
+        $_POST = $r;
     }
 ?>
 
@@ -42,7 +58,7 @@
     <div class="main-content">
         <div class="container">
             <p class="path">Տեղադրել հայտարարություն › Տրանսպորտ › Ավտոմեքենաներ › Ավտոմեքենաներ</p>
-            <form enctype="multipart/form-data" action="<?php echo $_SERVER["PHP_SELF"];?>" method="POST">
+            <form enctype="multipart/form-data" action="" method="POST">
                 <div class="parameters">
                     <p class="err"><?php if(isset($err)){echo $err;} ?></p>
                     <div class="parametr-part">
@@ -442,6 +458,7 @@
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" value=<?php if(isset($_GET["id"])){echo "$_GET[id]";}?> name="id">
                     <input type="submit" value="Դիտել" name="add">
                 </div>
             </form>

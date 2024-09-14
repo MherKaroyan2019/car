@@ -86,16 +86,34 @@
             return $result;
         }
 
-        public function getInfo(){
-            $sql = "SELECT * From `product` Where `id` = '$_GET[id]'";
-            $result["result"] = mysqli_query($db, $sql);
-            $r = mysqli_fetch_assoc($result);
-            
-            $sql1 = "SELECT * From `user` Where `id` = '$r[userid]'";
-            $result1 = mysqli_query($db, $sql1);
-            
-            $sql2 = "SELECT * From `product` Where `id` != $r[id] AND `brand` = '$r[brand]' AND `model` = '$r[model]' AND `bodytype` = '$r[bodytype]' AND `engine` = '$r[engine]' AND `gearbox` = '$r[gearbox]' AND `towtruck` = '$r[towtruck]' AND `condition` = '$r[condition]' AND `wheel` = '$r[wheel]' AND `customclear` = '$r[customclear]' AND `luke` = '$r[luke]' ORDER BY RAND() LIMIT 6";
-            $result2 = mysqli_query($db, $sql2);
+        public function delete($id, $imgNames){
+            global $db;
+            $Imges = explode(",",$imgNames);
+            foreach($Imges as $key => $value){
+                unlink("../assets/addimages/" . $value);
+            }
+
+            $sql = "DELETE FROM `product` WHERE `id`='$id'";
+            mysqli_query($db, $sql);
+        }
+
+        public function update($data, $id){
+            global $db;
+            $returnValues = [];
+
+            foreach($data as $key => $value){
+                if($value == "Դիտել" || $value == "Մուտք"){
+                    continue;
+                }else{
+                    if($key == "airconditioner" || $key == "heatedseats" || $key == "heatedwheel" || $key == "ventilatedseats" || $key == "cruisecontrol" || $key == "tinted"){
+                        array_push($returnValues, "`$key` = '1'");
+                    }else{
+                        array_push($returnValues, "`$key` = '$value'");
+                    }
+                }        
+            }
+            $sql = "UPDATE product SET " . join(", ", $returnValues) . " Where id = '$id';";
+            mysqli_query($db, $sql);
         }
     }
 ?>

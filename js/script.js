@@ -153,6 +153,18 @@ $( document ).ready(function() {
     $(".filt").click(function(){
         $(".search-form").toggle();
     })
+    $(".change").click(function(){
+        $(this).prev().removeAttr('disabled');
+        $(this).hide();
+        $(this).next().css("display", "flex");
+    })
+    $(".no").click(function(){
+        console.log($(this).parent(".changesubmit").prev().prev().attr('value'))
+        $(this).parent(".changesubmit").prev().prev().attr('disabled','disabled');
+        $(this).parent(".changesubmit").prev().prev().attr('value', $(this).parent(".changesubmit").prev().prev().attr('data-value'));
+        $(this).parent(".changesubmit").prev().css("display", "inline-block");
+        $(this).parent(".changesubmit").hide();
+    })
 });
 
 // function valuesRegex(event){

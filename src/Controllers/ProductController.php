@@ -15,5 +15,13 @@
         public function add($data){
             return $this->model("ProductModel", "add", $data);
         }
+
+        public function delete($data, $imgNames){
+            return $this->model("ProductModel", "delete", $data, $imgNames);
+        }
+
+        public function update($data, $id){
+            return $this->model("ProductModel", "update", $data, $id);
+        }
     }
 ?>

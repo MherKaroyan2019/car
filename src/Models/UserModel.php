@@ -29,5 +29,20 @@
 
             return $result;
         }
+
+        public function update($data, $id){
+            global $db;
+            $returnValues = [];
+
+            foreach($data as $key => $value){
+                if($value == "Պահպանել"){
+                    continue;
+                }else{
+                    array_push($returnValues, "`$key` = '$value'");
+                }        
+            }
+            $sql = "UPDATE user SET " . join(", ", $returnValues) . " Where id = '$id';";
+            mysqli_query($db, $sql);
+        }
     }
 ?>

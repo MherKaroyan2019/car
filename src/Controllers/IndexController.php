@@ -30,5 +30,9 @@
         public function add(){
             $this->render('add');
         }
+
+        public function settings(){
+            $this->render('settings');
+        }
     }
 ?>

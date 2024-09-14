@@ -591,6 +591,35 @@ a{
     list-style-type: none;
 }
 
+.main-content .yourpage .change-form{
+    width: 90%;
+    height: calc(var(--vievport-width)*0.2);
+    display: flex;
+    justify-content: space-around;
+}
+
+.main-content .yourpage .change-form p.change{
+    width: 30%;
+    margin: 0;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.main-content .yourpage .change-form .changesubmit{
+    width: 40%;
+    display: none;
+    justify-content: space-around;
+}
+
+.main-content .yourpage .change-form .changesubmit input{
+    width: 40%;
+    border: 0;
+    border-radius: 3px;
+    margin: 0;
+    font-size: calc(var(--font-size)*0.4);
+    cursor: pointer;
+}
+
 /*                            add                                       */
 
 .main-content .path {
@@ -877,6 +906,14 @@ a{
 
 .main-content .car .other .other-car p {
     font-size: calc(var(--font-size)*0.6);
+}
+
+.main-content .update, .main-content .delete{
+    width: calc(var(--vievport-width)*0.4);
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
 }
 
 .container {
