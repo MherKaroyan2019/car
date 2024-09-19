@@ -10,34 +10,11 @@
             }else{
                 $ProductController = new ProductController;
                 $_POST += ["userid" => $_SESSION["id"]];
-                $name = $_FILES["img"]["name"];
-                $tmpname = $_FILES["img"]["tmp_name"];
-                print_r($name);
-                echo "<BR>";
-                print_r($tmpname);
-                $imges = [];
-                for($i = 0; $i < count($name); $i++){
-                    $imgname = explode(".", $name[$i])[0];
-                    if(file_exists("../assets/addimages/$imgname.jpg")){
-                        $j = 1;
-                        while (true) {
-                            if(!file_exists("../assets/addimages/$imgname($j).jpg")){
-                                $imgname = $imgname . "($j)";
-                                array_push($imges, $imgname . ".jpg");
-                                move_uploaded_file($tmpname[$i], "../assets/addimages/$imgname.jpg");
-                                break;
-                            }
-                            $j++;
-                        }   
-                    }else{
-                        move_uploaded_file($tmpname[$i], "../assets/addimages/$imgname.jpg");
-                    }
-                }
-                $_POST += ["imgNames" => join(",",$imges)];
+                
                 if(isset($_GET["action"])){
-                    $ProductController->update($_POST, $_GET["id"]);
+                    $ProductController->update($_POST, $_GET["id"], $_FILES);
                 }else if(!isset($_GET["action"])){
-                    $ProductController->add($_POST);
+                    $ProductController->add($_POST, $_FILES);
                 }
                 header("Location: ../public/yourpage.php");
             }

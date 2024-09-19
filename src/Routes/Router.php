@@ -13,7 +13,7 @@
                 $action = $this->routes[$uri]['action'];
 
                 $controller = new $controller();
-                $controller->$action();
+                $controller->$action(); 
             } else {
                 throw new \Exception("No route found for URI: $uri");
             }

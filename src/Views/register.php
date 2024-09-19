@@ -1,21 +1,7 @@
 <?php 
-    include "db.php";
-    
     if(isset($_POST['register'])){
-        if($_POST['name'] != "" && $_POST['email'] != "" && $_POST['password'] != ""){
-            $UserController = new UserController;
-            $result = $UserController->get(["email" => $_POST['email']]);
-            if(mysqli_num_rows($result) == 0){
-                $values = $_POST;
-                $values["date"] = date('d/m/Y');
-                $UserController->add($values);
-                header("Location: login.php");
-            }else{
-                $err = "Այս էլեկտրոնային հասցեով կա արդեն գրանցված հաշիվ";
-            }
-        }else{
-            $err = 'Լրացրեք բոլոր դաշտերը';
-        }
+        $UserController = new UserController;
+        $UserController->register($_POST);
     }
 ?>
 <?php include 'header.php' ?>

@@ -1,5 +1,5 @@
 <?php
-    require_once (__DIR__ . '\..\controller.php');
+    require_once (__DIR__ . '\MainController.php');
 
     class ProductController extends Controller{
         public $ProductModel;
@@ -12,16 +12,16 @@
             return $this->model("ProductModel", "get", $data, $limit);
         }
 
-        public function add($data){
-            return $this->model("ProductModel", "add", $data);
+        public function add($data, $file){
+            return $this->model("ProductModel", "add", $data, $file);
         }
 
         public function delete($data, $imgNames){
             return $this->model("ProductModel", "delete", $data, $imgNames);
         }
 
-        public function update($data, $id){
-            return $this->model("ProductModel", "update", $data, $id);
+        public function update($data, $id, $file){
+            return $this->model("ProductModel", "update", $data, $id, $file);
         }
     }
 ?>

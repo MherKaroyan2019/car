@@ -1,9 +1,37 @@
 <?php
-    require_once (__DIR__ . '\..\Model.php');
+    require_once (__DIR__ . '\MainModel.php');
+    include "db.php";
 
     class ProductModel extends Model{
-        public function add($data){
+        public function add($data, $file){
             global $db;
+            $name = $file["img"]["name"];
+            $tmpname = $file["img"]["tmp_name"];
+            $imges = [];
+            for($i = 0; $i < count($name); $i++){
+                $imgname = explode(".", $name[$i])[0];
+                if(file_exists("../assets/addimages/$imgname.jpg")){
+                    $j = 1;
+                    while (true) {
+                        if(!file_exists("../assets/addimages/$imgname($j).jpg")){
+                            $imgname = $imgname . "($j)";
+                            echo $imgname;
+                            array_push($imges, $imgname . ".jpg");
+                            move_uploaded_file($tmpname[$i], "../assets/addimages/$imgname.jpg");
+                            break;
+                        }
+                        $j++;
+                    }   
+                }else{
+                    move_uploaded_file($tmpname[$i], "../assets/addimages/$imgname.jpg");
+                }
+            }
+            print_r($imges);
+
+            $imges = join(",", $imges);
+
+            $data += ["imgNames" => $imges];
+
             $values = [];
             $keys = [];
 
@@ -97,8 +125,40 @@
             mysqli_query($db, $sql);
         }
 
-        public function update($data, $id){
+        public function update($data, $id, $file){
             global $db;
+
+            $sql = "SELECT * From `product` Where `id` = '$id'";
+            $result = mysqli_query($db, $sql);
+            $r = mysqli_fetch_assoc($result);
+            $prevnames = explode(",",$r["imgNames"]);
+
+            for($i = 0; $i < count($prevnames); $i++){
+                print_r($prevnames);
+                unlink("../assets/addimages/$prevnames[$i].jpg");
+            }
+
+            $name = $file["img"]["name"];
+            $tmpname = $file["img"]["tmp_name"];
+            $imges = [];
+            for($i = 0; $i < count($name); $i++){
+                $imgname = explode(".", $name[$i])[0];
+                if(file_exists("../assets/addimages/$imgname.jpg")){
+                    $j = 1;
+                    while (true) {
+                        if(!file_exists("../assets/addimages/$imgname($j).jpg")){
+                            $imgname = $imgname . "($j)";
+                            array_push($imges, $imgname . ".jpg");
+                            move_uploaded_file($tmpname[$i], "../assets/addimages/$imgname.jpg");
+                            break;
+                        }
+                        $j++;
+                    }   
+                }else{
+                    move_uploaded_file($tmpname[$i], "../assets/addimages/$imgname.jpg");
+                }
+            }
+            $data += ["imgNames" => join(",",$imges)];
             $returnValues = [];
 
             foreach($data as $key => $value){

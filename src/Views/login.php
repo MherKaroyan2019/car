@@ -1,24 +1,9 @@
 <?php
     session_start();
 
-    include "db.php";
-
     if(isset($_POST['login'])){
-        if($_POST['email'] != "" && $_POST['password'] != ""){
-            $UserController = new UserController;
-            $result = $UserController->get($_POST);
-            if(mysqli_num_rows($result) == 0){
-                $err = 'Անվավեր մուտքանուն կամ գաղտնաբառ:';
-            } else {
-                $r = mysqli_fetch_assoc($result);
-                $_SESSION["id"] = $r["id"];
-                $_SESSION["name"] = $r["name"];
-            }
-
-            header("Location: ../public");
-        }else{
-            $err = 'Լրացրեք բոլոր դաշտերը';
-        }
+        $UserController = new UserController;
+        $err = $UserController->login($data);;
     }
 ?>
 <?php include 'header.php' ?>

@@ -1,5 +1,5 @@
 <?php
-    require_once (__DIR__ . '\..\controller.php');
+    require_once (__DIR__ . '\MainController.php');
 
     class UserController extends Controller{
         public $UserModel;
@@ -22,6 +22,14 @@
 
         public function update($data, $id){
             return $this->model("UserModel", "update", $data, $id);
+        }
+
+        public function login($data){
+            return $this->model("UserModel", "login", $data);
+        }
+
+        public function register($data){
+            return $this->model("UserModel", "register", $data);
         }
     }
 ?>

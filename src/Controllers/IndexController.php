@@ -1,10 +1,9 @@
 <?php
-    require_once (__DIR__ . '\..\controller.php');
-    require_once (__DIR__ . '\..\Controllers\ProductController.php');
-    require_once (__DIR__ . '\..\Controllers\UserController.php');
+    require_once (__DIR__ . '\MainController.php');
+    require_once (__DIR__ . '\ProductController.php');
+    require_once (__DIR__ . '\UserController.php');
     require_once (__DIR__ . '\..\Models\ProductModel.php');
     require_once (__DIR__ . '\..\Models\UserModel.php');
-    require_once (__DIR__ . '\..\Views\db.php');
 
     class IndexController extends Controller{
         public function index(){

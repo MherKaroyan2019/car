@@ -1,15 +1,12 @@
 <?php 
     session_start();
-
-    include "db.php";
-
+    
     $ProductController = new ProductController;
 
     if(isset($_GET["action"]) && $_GET["action"] == "delete"){
         $result = $ProductController->get(["id" => $_GET["id"]]);
         $r = mysqli_fetch_assoc($result);
         $imgNames = $r["imgNames"];
-        echo $imgNames;
         $ProductController->delete($_GET["id"], $imgNames);
     }
 

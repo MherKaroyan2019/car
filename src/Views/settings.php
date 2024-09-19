@@ -1,20 +1,10 @@
 <?php 
     session_start();
-
-    include "db.php";
-
+    
     $UserController = new UserController;
 
     if(isset($_POST["update"])){
-        $err = "";
-        if((isset($_POST["name"]) && $_POST["name"] != "") || (isset($_POST["email"]) && $_POST["email"] != "")){
-            $UserController->update($_POST, $_SESSION["id"]);
-            if(isset($_POST["name"])){
-                $_SESSION["name"] = $_POST["name"];
-            }
-        }else{
-            $err = "No empty inputes";
-        }
+        $UserController->update($_POST, $_SESSION["id"]);
     }
 
     $result = $UserController->get(["id" => $_SESSION["id"]]);
