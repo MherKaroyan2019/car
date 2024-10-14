@@ -1,36 +1,4 @@
-
-<?php 
-    session_start();
-
-    if(isset($_POST['add'])){
-        $err = "";
-        if(count(array_filter($_POST)) == count($_POST) || isset($_FILES["tmp_name"])) {
-            if($_FILES["img"]["type"][0] != "image/jpeg" && $_FILES["img"]["type"][0] != "image/jpg"){
-                $err = "Insert jpeg or jpg image";
-            }else{
-                $ProductController = new ProductController;
-                $_POST += ["userid" => $_SESSION["id"]];
-                
-                if(isset($_GET["action"])){
-                    $ProductController->update($_POST, $_GET["id"], $_FILES);
-                }else if(!isset($_GET["action"])){
-                    $ProductController->add($_POST, $_FILES);
-                }
-                header("Location: ../public/yourpage.php");
-            }
-        } else {
-            $err = "Insert all values";
-        }
-    }
-
-    if(isset($_GET["action"]) && $_GET["action"] == "update"){
-        $ProductController = new ProductController;
-        $result = $ProductController->get(["id"=>$_GET["id"]]);
-        $r = mysqli_fetch_assoc($result);
-        $_POST = $r;
-    }
-?>
-
+<?php global $err; ?>
 <?php include 'header.php' ?>
     <div class="main-content">
         <div class="container">

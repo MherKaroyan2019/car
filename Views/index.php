@@ -1,9 +1,5 @@
-<?php 
-    session_start();
-
-    $ProductController = new ProductController;
-
-    $result = $ProductController->get($_POST);
+<?php
+    global $result;
 ?>
 <?php require('footer.php')?>
 <?php require('header.php')?>  

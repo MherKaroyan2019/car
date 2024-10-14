@@ -1,14 +1,5 @@
 <?php 
-    session_start();
-    
-    $UserController = new UserController;
-
-    if(isset($_POST["update"])){
-        $UserController->update($_POST, $_SESSION["id"]);
-    }
-
-    $result = $UserController->get(["id" => $_SESSION["id"]]);
-    $r = mysqli_fetch_assoc($result);
+    global $r;
 ?>
 
 <?php include 'header.php' ?>
@@ -44,6 +35,9 @@
                             <input type="submit" name="update" value="Պահպանել">
                             <input type="button" value="Չեղարկել" class="no">
                         </div>
+                    </form>
+                    <form action="" class="change-form" method="POST">
+                        <input type="submit" id="logout" name="logout" value="Դուրս գալ հաշվից">
                     </form>
                     <p class="err"><?php if(isset($err)){echo $err;} ?></p>
                 </div>

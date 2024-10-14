@@ -1,9 +1,4 @@
-<?php 
-    if(isset($_POST['register'])){
-        $UserController = new UserController;
-        $UserController->register($_POST);
-    }
-?>
+<?php global $err; ?>
 <?php include 'header.php' ?>
     <div class="main-content">
         <div class="container">

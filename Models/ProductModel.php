@@ -1,10 +1,8 @@
 <?php
     require_once (__DIR__ . '\MainModel.php');
-    include "db.php";
 
     class ProductModel extends Model{
         public function add($data, $file){
-            global $db;
             $name = $file["img"]["name"];
             $tmpname = $file["img"]["tmp_name"];
             $imges = [];

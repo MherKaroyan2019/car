@@ -31,5 +31,9 @@
         public function register($data){
             return $this->model("UserModel", "register", $data);
         }
+
+        public function logout(){
+            return $this->model("UserModel", "logout");
+        }
     }
 ?>

@@ -1,14 +1,5 @@
 <?php 
-    $ProductController = new ProductController;
-    $UserController = new UserController;
-
-    $result = $ProductController->get(["id" => $_GET["id"]]);
-    $r = mysqli_fetch_assoc($result);
-
-    $result1 = $UserController->get(["id" => $r["userid"]]);
-    $r1 = mysqli_fetch_assoc($result1);
-
-    $result2 = $ProductController->get(["brand" => $r["brand"], "model" => $r["model"], "bodytype" => $r["bodytype"], "engine" => $r["engine"], "gearbox" => $r["gearbox"], "towtruck" => $r["towtruck"], "condition" => $r["condition"], "wheel" => $r["wheel"], "customclear" => $r["customclear"], "luke" => $r["luke"]], 6)
+    global $r, $r1, $result2;
 ?>
 
 
@@ -145,7 +136,7 @@
                         <div class="since">List.am-ում է` <?php echo $r1["date"] ?></div>
                     </div>
                     <div class="other">
-                        <?php if(mysqli_num_rows($result) != 0){ 
+                        <?php if(mysqli_num_rows($result2) != 0){ 
                             while($r2 = mysqli_fetch_assoc($result2)){   
                                 $imgname = explode(",", $r2['imgNames'])[0]; 
                         ?>  

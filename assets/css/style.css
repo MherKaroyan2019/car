@@ -721,6 +721,7 @@ a{
 
 .main-content .img .img-div {
     width: calc(var(--vievport-width)*1.2);
+    height: calc(var(--vievport-width)*1.2);
     border-radius: calc(var(--vievport-width)*0.1);
     margin: calc(var(--vievport-width)*0.05);
     background-size: cover;
@@ -911,6 +912,14 @@ a{
 .main-content .update, .main-content .delete{
     width: calc(var(--vievport-width)*0.4);
     background-color: white;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+}
+
+#logout{
+    height: calc(var(--vievport-width)*0.2);
+    font-size: calc(var(--font-size)*0.4);
     border: none;
     cursor: pointer;
     display: inline-block;

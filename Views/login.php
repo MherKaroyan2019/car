@@ -1,11 +1,4 @@
-<?php
-    session_start();
-
-    if(isset($_POST['login'])){
-        $UserController = new UserController;
-        $err = $UserController->login($data);;
-    }
-?>
+<?php global $err; ?>
 <?php include 'header.php' ?>
     <div class="main-content"> 
         <div class="container">

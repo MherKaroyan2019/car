@@ -1,33 +1,29 @@
 <?php
     require_once (__DIR__ . '\MainModel.php');
-    include "db.php";
 
     class UserModel extends Model{
         public function add($data){
             global $db;
             extract($data);
-            $sql = "INSERT INTO Customers Where `email` = '$email' And `password` = '$password'";
+            $sql = "INSERT INTO `user` (`email`, `password`, `name`, `date`) VALUES ('$email', '$password', '$name', '$date')";
             $this->sql($sql, $db);
         }
 
         public function get($data){
             global $db;
+            extract($data);
 
-            $sql = "SELECT * From `user`";
             $returnValues = [];
-            
+
             foreach($data as $key => $value){
-                if($value == "Դիտել" || $value == "Մուտք"){
-                    break;
-                }
-                array_push($returnValues, "`$key` = '$value'");
+                if($value == "Պահպանել" || $value == "Մուտք"){
+                    continue;
+                }else{
+                    array_push($returnValues, "`$key` = '$value'");
+                }        
             }
-
-            if($returnValues){
-                $sql .= "Where" . join(" AND ", $returnValues);
-            }
-
-            $result = mysqli_query($db, $sql);
+            $sql = "SELECT * From `user` Where " . join("AND", $returnValues);
+            $result = $this->sql($sql, $db);
 
             return $result;
         }
@@ -59,7 +55,7 @@
 
         public function login($data){
             $err = "";
-            if($_POST['email'] != "" && $_POST['password'] != ""){
+            if($data['email'] != "" && $data['password'] != ""){
                 $result = $this->get($data);
                 if(mysqli_num_rows($result) == 0){
                     $err = 'Անվավեր մուտքանուն կամ գաղտնաբառ:';
@@ -67,7 +63,8 @@
                     $r = mysqli_fetch_assoc($result);
                     $_SESSION["id"] = $r["id"];
                     $_SESSION["name"] = $r["name"];
-                    header("Location: ../public");
+
+                    header("Location: ../public/");
                 }
             }else{
                 $err = 'Լրացրեք բոլոր դաշտերը';
@@ -90,6 +87,12 @@
                 $err = 'Լրացրեք բոլոր դաշտերը';
             }
             return $err;
+        }
+
+        public function logout(){
+            unset($_SESSION["id"]);
+            unset($_SESSION["name"]);
+            header("Location: ../public/");
         }
     }
 ?>

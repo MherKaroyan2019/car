@@ -1,16 +1,5 @@
 <?php 
-    session_start();
-    
-    $ProductController = new ProductController;
-
-    if(isset($_GET["action"]) && $_GET["action"] == "delete"){
-        $result = $ProductController->get(["id" => $_GET["id"]]);
-        $r = mysqli_fetch_assoc($result);
-        $imgNames = $r["imgNames"];
-        $ProductController->delete($_GET["id"], $imgNames);
-    }
-
-    $result = $ProductController->get(["userid" => $_SESSION["id"]]);
+    global $result;
 ?>
 
 <?php include 'header.php' ?>
