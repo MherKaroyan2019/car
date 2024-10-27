@@ -1,7 +1,3 @@
-<?php 
-    global $result;
-?>
-
 <?php include 'header.php' ?>
     <div class="main-content">
         <div class="yourpage">

@@ -1,8 +1,3 @@
-<?php 
-    global $r, $r1, $result2;
-?>
-
-
 <?php include 'header.php' ?>
     <div class="main-content">
         <div class="container">

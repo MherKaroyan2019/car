@@ -1,4 +1,3 @@
-<?php global $err; ?>
 <?php include 'header.php' ?>
     <div class="main-content">
         <div class="container">

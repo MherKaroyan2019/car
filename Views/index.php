@@ -1,6 +1,3 @@
-<?php
-    global $result;
-?>
 <?php require('footer.php')?>
 <?php require('header.php')?>  
     <div class="main-content">  
