@@ -8,14 +8,20 @@
 
     $router = new Router();
 
+    $controller;
+
     if($name == "index"){
-        $router->addRoute("Product", ProductController::class);
-        $router->addRoute("User", UserController::class);
-        $router->addRoute("/", IndexController::class, $name);
+        $controller = IndexController::class;
+    }else if($name == "product" || $name == "add"){
+        $controller = ProductController::class;
     }else{
-        $router->addRoute("Product", ProductController::class);
-        $router->addRoute("User", UserController::class);
-        $router->addRoute("/$file", IndexController::class, $name);
+        $controller = UserController::class;
+    }
+
+    if($name == "index"){
+        $router->addRoute("/", $controller, $name);
+    }else{
+        $router->addRoute("/$file", $controller, $name);
     }   
 
     
