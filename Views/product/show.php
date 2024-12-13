@@ -1,11 +1,10 @@
-<?php include 'header.php' ?>
     <div class="main-content">
         <div class="container">
             <div class="car">
                 <div class="parametrs">
-                    <div class="images" data-count="0" data-image-names="<?php echo $r["imgNames"] ?>" style="background-image: url('../assets/addimages/<?php echo explode(",", $r['imgNames'])[0]; ?>')">
-                        <div class="left-arrow" style="background-image: url('../assets/img/left-arrow.png')" onclick="previousimg()"></div>
-                        <div class="right-arrow" style="background-image: url('../assets/img/right-arrow.png')" onclick="nextimg()"></div>
+                    <div class="images" data-count="0" data-image-names="<?php echo $r["imgNames"] ?>" style="background-image: url('../../assets/addimages/<?php echo explode(",", $r['imgNames'])[0]; ?>')">
+                        <div class="left-arrow" style="background-image: url('../../assets/img/left-arrow.png')" onclick="previousimg()"></div>
+                        <div class="right-arrow" style="background-image: url('../../assets/img/right-arrow.png')" onclick="nextimg()"></div>
                     </div>
                     <div class="car-info">
                         <div class="main-info">
@@ -135,9 +134,9 @@
                             while($r2 = mysqli_fetch_assoc($result2)){   
                                 $imgname = explode(",", $r2['imgNames'])[0]; 
                         ?>  
-                            <a href="product.php?id=<?php echo $r2["id"] ?>">
+                            <a href="/car/product/show/<?php echo $r2["id"] ?>">
                                 <div class="other-car">
-                                    <img src="../assets/addimages/<?php echo $imgname ?>">
+                                    <img src="../../assets/addimages/<?php echo $imgname ?>">
                                     <div style="margin-left: 20px;">
                                         <p class="main-info"><?php echo $r['brand'] . " " . $r["model"] . ", " . $r['enginesize'] . ", " . $r["year"]?></p>
                                         <p class="value"><?php echo $r["currency"][0] . $r["value"] ?></p>
@@ -152,4 +151,3 @@
             </div>
         </div>
     </div>
-<?php include 'footer.php' ?>

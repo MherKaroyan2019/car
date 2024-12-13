@@ -12,7 +12,7 @@
 
         public function index(){
             $result = $this->ProductModel->get($_POST);
-            $this->render('index', ["result" => $result]);
+            $this->render('index\index', ["result" => $result]);
         }
     }
 ?>

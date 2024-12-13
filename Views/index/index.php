@@ -1,6 +1,4 @@
-<?php require('footer.php')?>
-<?php require('header.php')?>  
-    <div class="main-content">  
+     <div class="main-content">  
         <div class="container">
             <h1>Ավտոմեքենաներ</h1>      
             <div class="filt">Ֆիլտրեր</div>
@@ -582,9 +580,9 @@
                                 while($r = mysqli_fetch_assoc($result)){
                                     $imgname = explode(",", $r['imgNames'])[0];
                         ?>
-                                    <a href="product.php?id=<?php echo $r["id"] ?>">
+                                    <a href="product/show/<?php echo $r["id"] ?>">
                                         <div class="product">
-                                            <img src="<?php echo "../assets/addimages/$imgname"; ?>">
+                                            <img src="<?php echo "assets/addimages/$imgname"; ?>">
                                             <h3><?php echo $r["currency"][0] . $r["value"] ?></h3>
                                             <p class="main-info"><?php echo $r['brand'] . " " . $r["model"] . ", " . $r['enginesize'] . ", " . $r["year"]?></p>
                                             <p class="second-info"><?php echo $r['region'] . ", " . $r['year'] . ", " . $r["run"] . " " . $r["runtype"]?></p>

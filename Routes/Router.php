@@ -1,8 +1,8 @@
 <?php
     class Router{
-        public $routes = [];
+        protected $routes = [];
 
-        public function addRoute($route, $controller, $action = 0){
+        public function addRoute($route, $controller, $action = 'index'){
             $this->routes[$route] = ['controller' => $controller, 'action' => $action];
         }
 

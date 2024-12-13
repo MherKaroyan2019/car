@@ -64,7 +64,7 @@
                     $_SESSION["id"] = $r["id"];
                     $_SESSION["name"] = $r["name"];
 
-                    header("Location: ../public/");
+                    header("Location: ../");
                 }
             }else{
                 $err = 'Լրացրեք բոլոր դաշտերը';

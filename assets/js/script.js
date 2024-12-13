@@ -123,7 +123,7 @@ $( document ).ready(function() {
             count = imgNames.length - 1;
         }
 
-        div.css("background-image", `url('../assets/addimages/${imgNames[count]}')`);
+        div.css("background-image", `url('../../assets/addimages/${imgNames[count]}')`);
         div.attr("data-count", count);
     })
     $(".right-arrow").click(function(){
@@ -136,7 +136,7 @@ $( document ).ready(function() {
             count = 0;
         }
 
-        div.css("background-image", `url('../assets/addimages/${imgNames[count]}')`);
+        div.css("background-image", `url('../../assets/addimages/${imgNames[count]}')`);
         div.attr("data-count", count);
     })
     $(".button").click(function(){

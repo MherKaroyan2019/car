@@ -17,7 +17,7 @@
             if(isset($_POST['login'])){
                 $err = $this->UserModel->login($_POST);
             }
-            $this->render('login', ["err" => $err]);
+            $this->render('user\login', ["err" => $err]);
         }
 
         public function register(){
@@ -25,10 +25,10 @@
             if(isset($_POST['register'])){
                 $err = $this->UserModel->register($_POST);
             }
-            $this->render('register', ["err" => $err]);
+            $this->render('user\register', ["err" => $err]);
         }
 
-        public function yourpage(){
+        public function index(){
             if(isset($_GET["action"]) && $_GET["action"] == "delete"){
                 $result = $this->ProductModel->get(["id" => $_GET["id"]]);
                 $r = mysqli_fetch_assoc($result);
@@ -36,10 +36,10 @@
                 $this->ProductModel->delete($_GET["id"], $imgNames);
             }
             $result = $this->ProductModel->get(["userid" => $_SESSION["id"]]);
-            $this->render('yourpage', ["result" => $result]);
+            $this->render('user\index', ["result" => $result]);
         }
 
-        public function settings(){
+        public function update(){
             if(isset($_POST["update"])){
                 $this->UserModel->update($_POST, $_SESSION["id"]);
             }
@@ -50,7 +50,7 @@
             
             $result = $this->UserModel->get(["id" => $_SESSION["id"]]);
             $r = mysqli_fetch_assoc($result);
-            $this->render('settings', ["r" => $r]);
+            $this->render('user\update', ["r" => $r]);
         }
     }
 ?>

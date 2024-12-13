@@ -1,4 +1,3 @@
-<?php include 'header.php' ?>
     <div class="main-content">
         <div class="container">
             <div class="register-form">
@@ -14,10 +13,9 @@
                     </div>
                     <input type="submit" name="register" value="Մուտք">
                     <div class="login">
-                        <a href="./login.php">List.am Մուտք</a> 
+                        <a href="./login">List.am Մուտք</a> 
                     </div>
                 </form>
             </div>
         </div>
     </div>
-<?php include 'footer.php' ?>

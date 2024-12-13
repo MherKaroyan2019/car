@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/font/FreeSans.ttf">
+    <link rel="stylesheet" href="\car\assets\css\style.css">
+    <link rel="stylesheet" href="\car\assets\font\FreeSans.ttf">
     <link href='https://unpkg.com/css.gg@2.0.0/icons/css/menu.css' rel='stylesheet'>
     <title>Document</title>
 </head>
@@ -12,7 +12,7 @@
     <div class="header">
         <div class="left-bar">
             <div class="logo">
-                <a href="../public"><img src="../assets/img/list-am.png" alt="list.am" width="100%" height="100%"></a>
+                <a href="/car"><img src="../../../../car/assets/img/list-am.png" alt="list.am" width="100%" height="100%"></a>
             </div>
             <div class="sections">
                 <a href="javascript:void(0)" class="sections-button"><span>Բաժիններ</span></a>
@@ -596,18 +596,18 @@
         <div class="right-bar">
             <?php if(!isset($_SESSION["id"]) && !isset($_SESSION["name"])){ ?>
                 <div class="your-page">
-                    <a href="login.php">Իմ էջը</a>
+                    <a href="/car/user/login">Իմ էջը</a>
                 </div>
             <?php }else{ ?>
                 <div class="your-page">
-                    <a href="yourpage.php"><?php echo $_SESSION["name"] ?></a>
+                    <a href="/car/user/index"><?php echo $_SESSION["name"] ?></a>
                 </div>
             <?php } ?>
             <div class="language">
-                <button class="lang"><img src="../assets/img/hy.png" alt="Armenia" width="20"></button>
+                <button class="lang"><img src="../../../../car/assets/img/hy.png" alt="Armenia" width="20"></button>
                 <div class="language-menu">
-                    <a href="#"><img src="../assets/img/ru.png" alt="Russian"> русский</a>
-                    <a href="#"><img src="../assets/img/en.png" alt="English"> english</a>
+                    <a href="#"><img src="../../../../car/assets/img/ru.png" alt="Russian"> русский</a>
+                    <a href="#"><img src="../../../../car/assets/img/en.png" alt="English"> english</a>
                 </div>
             </div>
         </div>

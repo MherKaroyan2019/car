@@ -1,4 +1,3 @@
-<?php include 'header.php' ?>
     <div class="main-content">
         <div class="container">
             <p class="path">Տեղադրել հայտարարություն › Տրանսպորտ › Ավտոմեքենաներ › Ավտոմեքենաներ</p>
@@ -408,4 +407,3 @@
             </form>
         </div>
     </div>  
-<?php include 'footer.php' ?>

@@ -3,27 +3,37 @@
     require_once __DIR__ . '\..\Controllers\ProductController.php';
     require_once __DIR__ . '\..\Controllers\UserController.php';
     require_once __DIR__ . '\Router.php';
-    
     session_start();
-
-    $router = new Router();
-
-    $controller;
-
-    if($name == "index"){
-        $controller = IndexController::class;
-    }else if($name == "product" || $name == "add"){
-        $controller = ProductController::class;
-    }else{
-        $controller = UserController::class;
-    }
-
-    if($name == "index"){
-        $router->addRoute("/", $controller, $name);
-    }else{
-        $router->addRoute("/$file", $controller, $name);
-    }   
-
+    $url = str_replace("/car/", "", $_SERVER['REQUEST_URI']);
+    $par = explode('/', $url);
     
-    $router->dispatch();
-?>
+    switch(count($par)){
+        case 1:
+            if($par[0]){
+                $uc = ucfirst($par[0]) . 'Controller';
+                $controller = new $uc();
+                $controller->index();
+            }else{
+                $controller = new IndexController();
+                $controller->index(); 
+            }
+        break;
+        case 2:
+            $uc = ucfirst($par[0]) . 'Controller';
+            $controller = new $uc();
+            $controller->{$par[1]}();
+        break;
+        case 3:
+            $uc = ucfirst($par[0]) . 'Controller';
+            $controller = new $uc;
+            $controller->{$par[1]}($par[2]);
+        break;
+        case 4:
+            $uc = ucfirst($par[0])  . 'Controller';
+            $controller = new $uc;
+            $controller->{$par[1]}($par[2], $par[3]);
+        break;
+    }
+    die();    
+    session_start();
+    

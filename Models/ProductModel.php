@@ -4,7 +4,6 @@
 
     class ProductModel extends Model{
         public function add($data, $file){
-            global $db;
             $name = $file["img"]["name"];
             $tmpname = $file["img"]["tmp_name"];
             $imges = [];
@@ -26,7 +25,6 @@
                     move_uploaded_file($tmpname[$i], "../assets/addimages/$imgname.jpg");
                 }
             }
-            print_r($imges);
 
             $imges = join(",", $imges);
 
@@ -50,11 +48,10 @@
             }
 
             $sql = "INSERT INTO product (" . join(", ", $keys) . ") VALUES (" . join(", ", $values) . ");";
-            mysqli_query($db, $sql);
+            $this->sql($sql);
         }
 
         public function get($data, $limit = -1) {
-            global $db;
             $sql = "SELECT * From `product`";
             $returnValues = [];
 
@@ -109,20 +106,19 @@
                 $sql .= " ORDER BY RAND() LIMIT 6";
             }
 
-            $result = mysqli_query($db, $sql);
+            $result = $this->sql($sql);
 
             return $result;
         }
 
         public function delete($id, $imgNames){
-            global $db;
             $Imges = explode(",",$imgNames);
             foreach($Imges as $key => $value){
                 unlink("../assets/addimages/" . $value);
             }
 
             $sql = "DELETE FROM `product` WHERE `id`='$id'";
-            mysqli_query($db, $sql);
+            $this->sql($sql);
         }
 
         public function update($data, $id, $file){

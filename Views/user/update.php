@@ -1,8 +1,7 @@
-<?php include 'header.php' ?>
     <div class="main-content">
         <div class="yourpage">
             <div class="main-navbar">         
-                <a href="yourpage.php">Հայտարարություններ</a>
+                <a href="/car/user/index">Հայտարարություններ</a>
                 <a href="#">Հաղորդագրություններ</a>
                 <a href="#">Մեկնաբանություններ</a>
                 <a href="#">Դրամապանակ</a>
@@ -40,4 +39,3 @@
             </div>
         </div>
     </div>  
-<?php include 'footer.php' ?>
