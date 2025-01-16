@@ -1,7 +1,7 @@
     <div class="main-content">
         <div class="container">
             <div class="register-form">
-                <form action="<?php echo $_SERVER["PHP_SELF"];?>" method="post">
+                <form action="<?php echo "/car/user/register";?>" method="post">
                     <p class="err"><?php if(isset($err)){echo $err;} ?></p>
 
                     <h1>Գրանցում</h1>

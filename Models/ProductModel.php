@@ -9,20 +9,20 @@
             $imges = [];
             for($i = 0; $i < count($name); $i++){
                 $imgname = explode(".", $name[$i])[0];
-                if(file_exists("../assets/addimages/$imgname.jpg")){
+                if(file_exists(BASE_URL ."assets/addimages/$imgname.jpg")){
                     $j = 1;
                     while (true) {
-                        if(!file_exists("../assets/addimages/$imgname($j).jpg")){
+                        if(!file_exists(BASE_URL ."assets/addimages/$imgname($j).jpg")){
                             $imgname = $imgname . "($j)";
                             echo $imgname;
                             array_push($imges, $imgname . ".jpg");
-                            move_uploaded_file($tmpname[$i], "../assets/addimages/$imgname.jpg");
+                            move_uploaded_file($tmpname[$i], BASE_URL ."assets/addimages/$imgname.jpg");
                             break;
                         }
                         $j++;
                     }   
                 }else{
-                    move_uploaded_file($tmpname[$i], "../assets/addimages/$imgname.jpg");
+                    move_uploaded_file($tmpname[$i], BASE_URL ."assets/addimages/$imgname.jpg");
                 }
             }
 
@@ -114,7 +114,7 @@
         public function delete($id, $imgNames){
             $Imges = explode(",",$imgNames);
             foreach($Imges as $key => $value){
-                unlink("../assets/addimages/" . $value);
+                unlink(BASE_URL . "assets/addimages/" . $value);
             }
 
             $sql = "DELETE FROM `product` WHERE `id`='$id'";
@@ -125,13 +125,13 @@
             global $db;
 
             $sql = "SELECT * From `product` Where `id` = '$id'";
-            $result = mysqli_query($db, $sql);
+            $result = mysqli_query($db, $sql); 
             $r = mysqli_fetch_assoc($result);
             $prevnames = explode(",",$r["imgNames"]);
 
             for($i = 0; $i < count($prevnames); $i++){
                 print_r($prevnames);
-                unlink("../assets/addimages/$prevnames[$i].jpg");
+                unlink(BASE_URL . "addimages/$prevnames[$i]");
             }
 
             $name = $file["img"]["name"];
@@ -169,7 +169,7 @@
                 }        
             }
             $sql = "UPDATE product SET " . join(", ", $returnValues) . " Where id = '$id';";
-            mysqli_query($db, $sql);
+            $this->sql($sql);
         }
     }
 ?>

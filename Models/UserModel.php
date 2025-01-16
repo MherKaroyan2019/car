@@ -50,7 +50,7 @@
                 }        
             }
             $sql = "UPDATE user SET " . join(", ", $returnValues) . " Where id = '$id';";
-            mysqli_query($db, $sql);
+            $this->sql($sql);
         }
 
         public function login($data){
@@ -79,7 +79,7 @@
                 if(mysqli_num_rows($result) == 0){
                     $data += ["date" => date('d/m/Y')];
                     $this->add($data);
-                    header("Location: login.php");
+                    header("Location: ../login");
                 }else{
                     $err = "Այս էլեկտրոնային հասցեով կա արդեն գրանցված հաշիվ";
                 }

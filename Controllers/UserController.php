@@ -28,12 +28,15 @@
             $this->render('user\register', ["err" => $err]);
         }
 
-        public function index(){
-            if(isset($_GET["action"]) && $_GET["action"] == "delete"){
-                $result = $this->ProductModel->get(["id" => $_GET["id"]]);
+        public function index($action = "", $id = ""){
+            if(isset($action) && $action == "delete"){
+                $result = $this->ProductModel->get(["id" => $id]);
+
                 $r = mysqli_fetch_assoc($result);
-                $imgNames = $r["imgNames"];
-                $this->ProductModel->delete($_GET["id"], $imgNames);
+                if($result->current_field != 0){
+                    $imgNames = $r["imgNames"];
+                    $this->ProductModel->delete($id, $imgNames);
+                }
             }
             $result = $this->ProductModel->get(["userid" => $_SESSION["id"]]);
             $this->render('user\index', ["result" => $result]);

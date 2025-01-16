@@ -36,7 +36,7 @@
                         }else if(!isset($_GET["action"])){
                             $this->ProductModel->add($_POST, $_FILES);
                         }
-                        header("Location: ../public/yourpage.php");
+                        header("Location: ../user/");
                     }
                 } else {
                     $err = "Insert all values";
